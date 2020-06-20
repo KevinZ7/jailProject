@@ -1,6 +1,14 @@
-body {
+html { 
+  background: url("/mainbg.png") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+/* body {
   background-image: url("/mainbg.png");
   background-repeat: no-repeat;
   background-size: 1850px 1000px;
 
-}
+} */
