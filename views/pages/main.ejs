@@ -19,9 +19,9 @@
 
   <button id="list_button" type="button">Check Criminal List</button>
   <button id="add_button" type="button">Register New Criminal</button>
-  <button id="visit_button" type="button">Visit Prisoners</button>
+  <button id="visit_button" type="button">Visit Criminals</button>
 
-  <div class="bg-modal">
+  <div id="add_modal" class="bg-modal">
     <div id = "add_content" class="modal-content">
       What Does the Criminal Look Like?
       <div>
@@ -32,9 +32,10 @@
         <button id="next_image" type="button">Next</button>
       </div> 
       <form action="">
-        <input type="text" placeholder="Name (40 char max)">
-        <input type="text" placeholder="Size(lb) (0 to 300)">
-        <input type="text" placeholder="height(cm)  (0 to 300)">
+        <input id="new_name" type="text" placeholder="Name (40 char max)">
+        <input id="new_size" type="number" placeholder="Size(lb) (0 to 300)">
+        <input id="new_height" type="number" placeholder="height(cm)  (0 to 300)">
+        <input id="new_sin" type="text" placeholder="Sin (6 char exact)">
         Type of Crime:
         <select id="crime_type" name="crime type">
           <option value="arson">arson</option>
@@ -43,8 +44,52 @@
           <option value="murder">murder</option>
           <option value="Robbery">Robbery</option>
         </select>
-
       </form>
+
+      <button id="submit_new" type="button">SUBMIT</button>
+      <div>
+        <button id="cancel_new" type="button">cancel</button>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div id="list_modal" class="bg-modal">
+    <div id = "list_modal_content" class="modal-content">
+      <div class="close">+</div>
+      Here are the criminals in the jail:
+      <div id = "criminal_list_container">
+      </div>
+    </div>
+  </div>
+
+  <div id="edit_modal" class="bg-modal">
+    <div id = "edit_modal_content" class="modal-content">
+      How would you like to edit the criminal?
+      <div>
+        <img id = "edit_image_head" class="create_image" data-current = "1" src="/1.png" >
+      </div>
+      <form action="">
+        <div id="sinnum"></div>
+        <input id="edit_name" type="text" placeholder="Name (40 char max)">
+        <input id="edit_size" type="number" placeholder="Size(lb) (0 to 300)">
+        <input id="edit_height" type="number" placeholder="height(cm)  (0 to 300)">
+        Type of Crime:
+        <select id="edit_crime_type" name="crime type">
+          <option value="arson">arson</option>
+          <option value="assault">assault</option>
+          <option value="kidnapping">kidnapping</option>
+          <option value="murder">murder</option>
+          <option value="Robbery">Robbery</option>
+        </select>
+      </form>
+
+      <button id="save_edit" data-edit-id="" type="button">SAVE</button>
+      <div>
+        <button id="cancel_edit" type="button">cancel</button>
+      </div>
+
 
     </div>
   </div>
