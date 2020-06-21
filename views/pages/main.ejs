@@ -10,6 +10,7 @@
   crossorigin="anonymous">
   </script>
   <link rel="stylesheet" type="text/css" href="./stylesheets/main.css">
+  <script type="text/javascript" src="/script.js"></script>
 </head>
 <body>
   <div id="div_container">
@@ -21,8 +22,34 @@
   <button id="visit_button" type="button">Visit Prisoners</button>
 
   <div class="bg-modal">
+    <div id = "add_content" class="modal-content">
+      What Does the Criminal Look Like?
+      <div>
+        <img id = "image_head" class="create_image" data-current = "1" src="/1.png" >
+      </div>
+      <div>
+        <button id="prev_image" type="button">Prev</button>
+        <button id="next_image" type="button">Next</button>
+      </div> 
+      <form action="">
+        <input type="text" placeholder="Name (40 char max)">
+        <input type="text" placeholder="Size(lb) (0 to 300)">
+        <input type="text" placeholder="height(cm)  (0 to 300)">
+        Type of Crime:
+        <select id="crime_type" name="crime type">
+          <option value="arson">arson</option>
+          <option value="assault">assault</option>
+          <option value="kidnapping">kidnapping</option>
+          <option value="murder">murder</option>
+          <option value="Robbery">Robbery</option>
+        </select>
 
+      </form>
+
+    </div>
   </div>
   
 </body>
+
+
 </html>
