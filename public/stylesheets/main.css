@@ -6,9 +6,65 @@ html {
   background-size: cover;
 }
 
-/* body {
-  background-image: url("/mainbg.png");
-  background-repeat: no-repeat;
-  background-size: 1850px 1000px;
+#title {
+  text-align: center;
+  border-color: black;
+  border-style: solid;
+  width: 60%;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: rgb(163, 156, 156);
+  border-radius: 30px;
+}
 
+#div_container {
+  border-color: black;
+  border-style: solid;
+  background-color: blue;
+  border-radius: 30px;
+  width: 70%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#list_button {
+  position: absolute;
+  top: 55%;
+  left: 2%;
+  height: 30px;
+  transform: skewY(-30deg);
+  border-style: solid;
+  border-radius: 20px;
+  border-color: green;
+  border-width: 3px;
+}
+
+/* .btn {
+  color: #fff;
+  background: #0079c1;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  border: 0;
+  outline: 0;
+  font-size: 1.1rem;
+  padding: 12px 35px;
+  display: inline-block;
+  transform: skew(-21deg);
+}
+
+.btn :hover{
+  background: #0069a8;
+}
+
+.btn > span{
+  display: inline-block; 
+  transform: skew(21deg);
+}
+
+.each {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 } */
