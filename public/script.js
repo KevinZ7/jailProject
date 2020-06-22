@@ -117,14 +117,13 @@ function editButtonHandler(event){
         dataType:'json',
         data:{sin:oldsin},
         success: function(data){
-            var result = data.rows[0];
             var editData = {
-                sin : result.sin,
-                name: result.name,
-                size: result.size,
-                height: result.height,
-                type: result.type,
-                image: result.image
+                sin : data.sin,
+                name: data.name,
+                size: data.size,
+                height: data.height,
+                type: data.type,
+                image: data.image
             }
             
             $('#edit_name').val(editData.name);
@@ -136,6 +135,7 @@ function editButtonHandler(event){
             $('#sinnum').empty()
             $('#sinnum').append("sin:"+editData.sin);
             $('#save_edit').attr("data-save-id",editData.sin);
+
 
         }
     })
