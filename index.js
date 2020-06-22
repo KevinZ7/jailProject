@@ -6,8 +6,8 @@ const { resourceUsage } = require('process');
 const { Console } = require('console');
 
 var pool = new Pool({
-  connectionString: 'postgres://postgres:password@localhost/ass2'
-  // connectionString: process.env.DATABASE_URL
+  // connectionString: 'postgres://postgres:password@localhost/ass2'
+  connectionString: process.env.DATABASE_URL
   // user:"postgres",
   // host:"localhost",
   // database:"ass2",
