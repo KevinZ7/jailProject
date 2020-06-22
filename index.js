@@ -3,6 +3,7 @@ const path = require('path');
 const PORT = process.env.PORT || 5000;
 const { Pool } = require('pg');
 const { resourceUsage } = require('process');
+const { Console } = require('console');
 
 var pool = new Pool({
   connectionString: 'postgres://postgres:password@localhost/ass2'
@@ -22,6 +23,10 @@ app.set('view engine', 'ejs');
 
 
 app.get('/', (req, res) => res.render('pages/main'));
+
+app.get('/visitcriminal',(req,res) => {
+  res.render('pages/visit');
+})
 
 app.post('/addcriminal', (req,res) =>{
   var data = req.body;
@@ -65,7 +70,7 @@ app.get('/listcriminal' , (req,res) =>{
 app.post('/editcriminal', (req,res) =>{
   var data = req.body;
   var oldsin = data.sin;
-  console.log (oldsin);
+  
 
 
   var userQuery1 = 'SELECT * FROM criminal WHERE sin = $1';
@@ -83,7 +88,6 @@ app.post('/editcriminal', (req,res) =>{
           res.end(error);
         }
 
-        console.log("done");
       })
       res.send();
 
@@ -97,12 +101,12 @@ app.post('/geteditinfo', (req,res) =>{
 
 
   var userQuery1 = 'SELECT * FROM criminal WHERE sin = $1';
-  pool.query(userQuery1,[oldsin],(error,result) =>{
+  pool.query(userQuery1,[String(oldsin)],(error,result) =>{
 
     var results = {'rows':result.rows};
     if(error)
       res.end(error);
-    res.send(results);
+    res.send(results.rows[0]);
   })
 })
 
@@ -117,6 +121,32 @@ app.post('/deletecriminal', (req,res) =>{
     if(error)
       res.end(error);
     res.send();
+  })
+})
+
+app.get('/visitcriminal',(req,res) => {
+  res.render('pages/visit');
+})
+
+app.get('/getallcriminals',(req,res) => {
+  var userQuery = 'SELECT * FROM criminal';
+  pool.query(userQuery,(error,result) =>{
+    var results = {'rows':result.rows};
+    if(error)
+      res.end(error);
+    
+    res.send(results.rows);
+  })
+})
+
+app.post('/gettypecriminals',(req,res) => {
+  var data = req.body;
+  var userQuery = "SELECT * FROM criminal WHERE type = $1";
+  pool.query(userQuery,[String(data.type)],(error,result) =>{
+    var results = {'rows':result.rows};
+    if(error)
+      res.end(error);
+    res.send(results.rows);
   })
 })
 

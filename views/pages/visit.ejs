@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script
+    src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" type="text/css" href="./stylesheets/visit.css">
+    <script type="text/javascript" src="/script.js"></script>
+</body>
+
+    <div id="div_container">
+        <h1 id="title">Visiting Center</h1>
+    </div>
+    <div id="back_container">  
+        <button id="back_police"  onclick="location.href='/'" type="button">Back to Police Station</button>   
+    </div>
+
+    <div id="filter_container">
+        <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+        <button class="btn" onclick="filterSelection('arson     ')"> Arson</button>
+        <button class="btn" onclick="filterSelection('assault   ')"> Assault</button>
+        <button class="btn" onclick="filterSelection('kidnapping')"> Kidnapping</button>
+        <button class="btn" onclick="filterSelection('murder    ')"> Murder</button>
+        <button class="btn" onclick="filterSelection('Robbery   ')"> Robbery</button>
+    </div>  
+<!-- 
+    <img src="/2.png" width="250px" height="250px">
+    <img src="/2.png" width="100px" height="100px">
+    <div><img class='criminal_image' width= '' height='' data-current = '' src=''></div><div>name:</div><div>sin:</div> -->
+    
+    <div id="item_container">   
+        <script>
+            filterSelection('all');
+        </script>
+    </div>
+
+    <div id="detail_modal" class="bg-modal">
+        <div id = "detail_modal_content" class="modal-content">
+          Details
+          <div>
+            <img id = "detail_image_head" class="create_image" data-current = "1" src="/1.png" >
+          </div>
+          <form action="">
+            <div id="sinnum" class="detailz"></div>
+            <div id="name" class="detailz"></div>
+            <div id="size" class="detailz"></div>
+            <div id="height" class="detailz"></div>
+            <div id="crime" class="detailz"></div>
+          </form>
+          <div>
+            <button id="close_detail" type="button">Close</button>
+          </div>
+    
+    
+        </div>
+      </div>
+</html>

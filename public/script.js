@@ -10,6 +10,9 @@ $(document).ready(function(){
     $('#criminal_list_container').on('click','.edit_button',editButtonHandler);
     $('#save_edit').on('click',saveEditHandler);
     $('#criminal_list_container').on('click','.delete_button',deleteButtonHandler);
+    $('#item_container').on('click','.criminal_image',crimimageclick);
+    $('#close_detail').on('click',closeDetail);
+    
 
 });
 
@@ -179,3 +182,103 @@ function deleteButtonHandler(event){
         }
     })
 }
+
+function filterSelection(selection){
+    var data;
+    $(".active").toggleClass('active');
+    $(this).toggleClass('active');
+    if(selection == "all"){
+        $.ajax({
+            method:"GET",
+            url:'/getallcriminals',
+            success: function(data){
+                $('#item_container').empty();
+                data.forEach(person => {
+                    var width = calculateDim(person.size);
+                    var height = calculateDim(person.height);
+                    $('#item_container').append("<div class='filterDiv'><div><img class='criminal_image' width= '"+width+"' height='"+height+"' data-current = '"+person.sin+"' src='/"+person.image+".png'></div><div class='crimname'>name:"+person.name+"</div><div class='crimname'>sin:"+person.sin+"</div></div>");
+                })
+            }
+        })
+    }
+    else{
+        $.ajax({
+            method:"POST",
+            url:'/gettypecriminals',
+            data:{
+                type:selection
+            },
+            success: function(data){
+                $('#item_container').empty();
+                data.forEach(person => {
+                    var width = calculateDim(person.size);
+                    var height = calculateDim(person.height);
+                    $('#item_container').append("<div class='filterDiv'><div><img class='criminal_image' width= '"+width+"' height='"+height+"' data-current = '"+person.sin+"' src='/"+person.image+".png'></div><div class='crimname'>name:"+person.name+"</div><div class='crimname'>sin:"+person.sin+"</div></div>");
+                })
+            }
+        })
+    }
+}
+
+function calculateDim(size){
+    var scale = {
+        xs : "100px",
+        s : "130px",
+        m : "170px",
+        l : "210px",
+        xl : "250px"
+    }
+    if(size <=60){
+        return "100px";
+    }
+
+    if(size >60 && size <=120){
+        return "130px";
+    }
+
+    if(size >120 && size <=180){
+        return "170px";
+    }
+
+    if(size >180 && size <=240){
+        return "210px";
+    }
+
+    if(size >240 && size <=300){
+        return "250px";
+    }
+}
+
+function crimimageclick(event){
+    var sin = $(this).attr("data-current");
+    $.ajax({
+        method:'POST',
+        url: '/geteditinfo',
+        data: {
+            sin: sin
+        },
+        success: function(data){
+            $('#detail_image_head').attr("src",'/'+data.image+'.png');
+            $('#sinnum').empty();
+            $('#sinnum').append('Sin: '+data.sin+'');
+            $('#name').empty();
+            $('#name').append('Name: '+data.name+'');
+            $('#size').empty();
+            $('#size').append('Size(lb): '+data.size+'');
+            $('#height').empty();
+            $('#height').append('Height(lb): '+data.height+'');
+            $('#crime').empty();
+            $('#crime').append('Crime: '+data.type+'');
+
+            $('#detail_modal').css("display","flex");
+        }
+    })
+}
+
+function closeDetail(){
+    $('#detail_modal').css("display","none");
+}
+
+  
+
+
